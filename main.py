@@ -1,3 +1,5 @@
+from media_op.config.env import *
+
 def main():
     print("Hello from media-op!")
 

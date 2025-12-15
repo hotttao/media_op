@@ -8,16 +8,16 @@ from media_op.biz.db import Base
 class Chat(Base):
     __tablename__ = 'chat'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    remark = Column(VARCHAR(255), nullable=False)  # 原 who 字段
-    last_msg = Column(Text(), nullable=True)
-    last_id = Column(VARCHAR(255), nullable=False)
+    id = Column(Integer, primary_key=True, autoincrement=True, comment="")
+    remark = Column(VARCHAR(255), nullable=False, comment="")  # 原 who 字段
+    last_msg = Column(Text(), nullable=True, comment="")
+    last_id = Column(VARCHAR(255), nullable=False, comment="")
     
     # 新增的四个字段
-    self_last_msg = Column(Text, nullable=True)
-    self_last_id = Column(Integer, nullable=True)
-    friend_last_msg = Column(Text, nullable=True)
-    friend_last_id = Column(Integer, nullable=True)
+    self_last_msg = Column(Text, nullable=True, comment="")
+    self_last_id = Column(Integer, nullable=True, comment="")
+    friend_last_msg = Column(Text, nullable=True, comment="")
+    friend_last_id = Column(Integer, nullable=True, comment="")
 
     # 联合唯一键：(remark, last_id)
     __table_args__ = (UniqueConstraint('remark', name='uix_remark'),)
@@ -85,19 +85,19 @@ class Chat(Base):
 class Merchant(Base):
     __tablename__ = 'merchant'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    remark = Column(VARCHAR(255), nullable=False, index=True)  # 用作唯一键，加索引
-    wx_id = Column(VARCHAR(255), nullable=True)
-    nickname = Column(VARCHAR(255), nullable=True)
-    shop = Column(VARCHAR(255), nullable=True)
-    brand = Column(VARCHAR(255), nullable=True)
-    category = Column(VARCHAR(255), nullable=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, comment="")
+    remark = Column(VARCHAR(255), nullable=False, index=True, comment="")  # 用作唯一键，加索引
+    wx_id = Column(VARCHAR(255), nullable=True, comment="")
+    nickname = Column(VARCHAR(255), nullable=True, comment="")
+    shop = Column(VARCHAR(255), nullable=True, comment="")
+    brand = Column(VARCHAR(255), nullable=True, comment="")
+    category = Column(VARCHAR(255), nullable=True, comment="")
 
-    sample_count = Column(Integer, default=0, nullable=False)        # 寄样总数
-    ad_spend_total = Column(Float, default=0.0, nullable=False)      # 投流总金额
-    scheduling_count = Column(Integer, default=0, nullable=False)    # 排片数量
+    sample_count = Column(Integer, default=0, nullable=False, comment="")        # 寄样总数
+    ad_spend_total = Column(Float, default=0.0, nullable=False, comment="")      # 投流总金额
+    scheduling_count = Column(Integer, default=0, nullable=False, comment="")    # 排片数量
 
-    evaluation = Column(Text, nullable=True)  # 评价
+    evaluation = Column(Text, nullable=True, comment="")  # 评价
 
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
