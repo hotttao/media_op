@@ -60,12 +60,13 @@ class WxAuto:
                 )
         return group_chat
 
-    def get_chat_msg(self, account: WxAccount) -> ChatInfo:
+    def get_chat_msg(self, account: WxAccount, more=True) -> ChatInfo:
         wx = self.wx
         cur_chat = wx.ChatInfo()
         if not (cur_chat["chat_name"] == account.remark):
             wx.ChatWith(who=account.remark)
-        self.load_chat_msg(max_load=5000)
+        if more:
+            self.load_chat_msg(max_load=5000)
         # 获取当前聊天窗口消息
         msgs = wx.GetAllMessage()
         chat_info = ChatInfo(
@@ -85,7 +86,8 @@ class WxAuto:
                 account=account,
                 type=msg.type,
                 msg=msg.content,
-                is_self=is_self
+                is_self=is_self,
+                message=msg
             )
             chat_info.content.append(chat_msg)
             chat_info.last_id = msg.id

@@ -14,6 +14,7 @@ class ChatMsg(BaseModel):
     type: str # 消息的类型
     is_self: bool # 是否是自己发送的消息
     # ref: str # 引用的消息
+    message: Optional[Any] = None
 
     def to_text(self, split="\n"):
         if self.type != "text":

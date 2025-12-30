@@ -1,4 +1,3 @@
-from wxautox import WeChat
+from wxautox4 import WeChat
 # 初始化微信实例
-# WX = WeChat()
-WX = None
+WX = WeChat()

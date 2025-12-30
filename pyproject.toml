@@ -16,4 +16,5 @@ dependencies = [
     "pymysql>=1.1.2",
     "sqlalchemy>=2.0.44",
     "wxautox>=39.1.42",
+    "wxautox4>=40.1.7",
 ]
